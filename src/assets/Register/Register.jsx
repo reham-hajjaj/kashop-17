@@ -147,7 +147,7 @@ function Register() {
           >
             Already have an account?{" "}
             <Link to="/login">Login</Link>
-             <Link to="/sendcode">sendCode</Link>
+             <Link to="/sendcode">SendCode</Link>
           </Typography>
         </Box>
       </Box>

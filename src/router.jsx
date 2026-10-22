@@ -4,7 +4,7 @@ import AuthLayout from "./Layouts/AuthLayout.jsx";
 import Home from "./assets/Home/Home.jsx";
 import Login from "./assets/Login/Login.jsx";
 import Register from "./assets/Register/Register.jsx";
-
+import SendCode from "./assets/SendCode/SendCode.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +27,10 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-    
+      {
+        path: "/sendcode",
+        element: <SendCode />,
+      },
       
     ],
   },

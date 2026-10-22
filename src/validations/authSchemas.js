@@ -31,8 +31,8 @@ export const registerSchema = yup.object().shape({
     .matches(/[A-Za-z]/, "Password must contain a letter")
     .matches(/[0-9]/, "Password must contain a number"),
 });
+
 export const loginSchema = yup.object().shape({
- 
   email: yup
     .string()
     .trim()
@@ -46,13 +46,11 @@ export const loginSchema = yup.object().shape({
     .matches(/[A-Za-z]/, "Password must contain a letter")
     .matches(/[0-9]/, "Password must contain a number"),
 });
-export const sendCod = yup.object().shape({
- 
+
+export const sendcodeSchema = yup.object().shape({
   email: yup
     .string()
     .trim()
     .email("Please enter a valid email")
     .required("Email is required"),
-
-  
 });
