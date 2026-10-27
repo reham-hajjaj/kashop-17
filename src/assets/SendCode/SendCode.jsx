@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { sendcodeSchema } from "../../validations/authSchemas";
 import axios from "axios";
-
+ 
 function SendCode() {
   const navigate = useNavigate();
   const [serverError, setServerError] = useState("");
