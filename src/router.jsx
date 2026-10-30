@@ -5,6 +5,7 @@ import Home from "./assets/Home/Home.jsx";
 import Login from "./assets/Login/Login.jsx";
 import Register from "./assets/Register/Register.jsx";
 import SendCode from "./assets/SendCode/SendCode.jsx";
+import Products from "./components/Products/Products.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,7 +32,10 @@ const router = createBrowserRouter([
         path: "/sendcode",
         element: <SendCode />,
       },
-      
+      {
+        path:"/product",
+        element: <Products/>,
+      }
     ],
   },
 ]);
