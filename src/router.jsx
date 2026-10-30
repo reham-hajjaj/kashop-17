@@ -5,7 +5,7 @@ import Home from "./assets/Home/Home.jsx";
 import Login from "./assets/Login/Login.jsx";
 import Register from "./assets/Register/Register.jsx";
 import SendCode from "./assets/SendCode/SendCode.jsx";
-import Products from "./components/Products/Products.jsx";
+import ProductDetails from "./pages/ProductDetails.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Home />
       },
     ],
   },
@@ -22,22 +22,22 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/login",
-        element: <Login />,
+        element: <Login />
       },
       {
         path: "/register",
-        element: <Register />,
+        element: <Register />
       },
       {
         path: "/sendcode",
-        element: <SendCode />,
+        element: <SendCode />
       },
       {
-        path:"/product",
-        element: <Products/>,
+        path:"/product/:id",
+        element: <ProductDetails/>
       }
-    ],
-  },
+    ]
+  }
 ]);
 
 export default router;
