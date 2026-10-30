@@ -15,6 +15,7 @@ import {
   Chip,
   Divider
 } from '@mui/material';
+import ReviewItem from '../components/ReviewItem';
 
 function ProductDetails() {
   const { id } = useParams();
@@ -82,11 +83,25 @@ function ProductDetails() {
       </Box>
 
     </Box>
-    <Divider sx={{mt:3,mb:3}}/>
-    {data.reviews.map((reviwe)=>)}
-    <Card>
-        <Typography></Typography>
-    </Card>
+   <Divider sx={{ mt: 3, mb: 3 }} />
+
+<Typography variant="h5" sx={{ mb: 2 }}>
+  Customer Reviews
+</Typography>
+
+{data.reviews?.length > 0 ? (
+  data.reviews.map((review) => (
+    <ReviewItem
+      key={review.id}
+      review={review}
+    />
+  ))
+) : (
+  <Typography color="text.secondary">
+    No reviews yet.
+  </Typography>
+)}
+    
       </>
   );
 }
