@@ -88,7 +88,6 @@ function ProductDetails() {
 <Typography variant="h5" sx={{ mb: 2 }}>
   Customer Reviews
 </Typography>
-
 {data.reviews?.length > 0 ? (
   data.reviews.map((review) => (
     <ReviewItem
@@ -101,7 +100,7 @@ function ProductDetails() {
     No reviews yet.
   </Typography>
 )}
-    
+
       </>
   );
 }
