@@ -6,6 +6,7 @@ import Login from "./assets/Login/Login.jsx";
 import Register from "./assets/Register/Register.jsx";
 import SendCode from "./assets/SendCode/SendCode.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import ResetPassword from "./assets/ResetPassword/ResetPassword.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,9 +25,14 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />
       },
+
       {
         path: "/register",
         element: <Register />
+      },
+      {
+        path:"/resetpassword",
+        element: <ResetPassword/>
       },
       {
         path: "/sendcode",

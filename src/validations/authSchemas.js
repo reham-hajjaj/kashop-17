@@ -54,3 +54,18 @@ export const sendcodeSchema = yup.object().shape({
     .email("Please enter a valid email")
     .required("Email is required"),
 });
+export const resetPasswordSchema = yup.object({
+  email: yup
+    .string()
+    .email("Invalid email")
+    .required("Email is required"),
+
+  code: yup
+    .string()
+    .required("Code is required"),
+
+  newPassword: yup
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .required("New password is required"),
+});

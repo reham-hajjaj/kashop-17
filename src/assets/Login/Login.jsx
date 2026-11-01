@@ -111,11 +111,18 @@ function Login() {
           >
             {isSubmitting?"Loading..." : "Login"}
           </Button>
-
+<Button
+  component={Link}
+  to="/resetpassword"
+  variant="text"
+>
+  Reset Password?
+</Button>
           <Typography
             variant="body2"
             sx={{ textAlign: "center", mt: 3 }}
           >
+
             Don't have an account?{" "}
             <Link to="/register">Register</Link>
            
