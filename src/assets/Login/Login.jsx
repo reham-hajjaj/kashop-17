@@ -13,9 +13,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations/authSchemas";
 import axios from "axios";
+import { useAuthStore } from "../../store/UseAuthStore";
 
 function Login() {
   const navigate = useNavigate();
+  const login = useAuthStore((state)=> state.login);
   const [serverError, setServerError] = useState("");
 
   const {
@@ -36,9 +38,11 @@ function Login() {
         data
       );
 
-      console.log("Registration successful:", response.data);
 
-      navigate("/home");
+      console.log("Registration successful:", response.data);
+      login(response.data.accessToken);
+      navigate('/')
+
     } catch (error) {
       console.error("Registration error:", error);
 
