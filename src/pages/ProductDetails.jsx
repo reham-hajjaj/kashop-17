@@ -1,6 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
+
 import UseProduct from '../hooks/UseProduct';
+import UseAddToCart from '../hooks/UseAddToCart';
+import { useAuthStore } from '../store/UseAuthStore';
+import ReviewItem from '../components/ReviewItem';
 
 import {
   Alert,
@@ -15,20 +19,31 @@ import {
   Chip,
   Divider
 } from '@mui/material';
-import ReviewItem from '../components/ReviewItem';
+import { Bounce, toast } from 'react-toastify';
 
 function ProductDetails() {
+  const navigate = useNavigate();
+
+  const token = useAuthStore((state) => state.token);
+
   const { id } = useParams();
 
-  const { data, isPending, isError } = UseProduct(id);
+  const {
+    mutate: addToCart,
+    isPending: addToCartPending
+  } = UseAddToCart();
 
-  console.log(data);
+  const {
+    data,
+    isPending,
+    isError
+  } = UseProduct(id);
 
   if (isPending) {
     return <CircularProgress />;
   }
 
-  if (isError) {
+  if (isError || !data) {
     return (
       <Alert severity="error">
         Failed to load product details.
@@ -36,72 +51,142 @@ function ProductDetails() {
     );
   }
 
-  const inStock = data.quantity > 0;
+  const inStock = Number(data.quantity) > 0;
+
+  const handleAddToCart = () => {
+    console.log('Button clicked');
+    console.log('Token:', token);
+    console.log('Product:', data.id);
+    console.log('Quantity:', data.quantity);
+
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
+    if (!inStock) {
+      alert('Product is out of stock');
+      return;
+    }
+
+    addToCart(data.id, {
+      onSuccess: (response) => {
+        toast('added to cart', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "light",
+transition: Bounce,
+})
+        console.log('Success:', response);
+        alert('Product added to cart successfully!');
+      },
+      
+
+      onError: (error) => {
+        console.log('Error:', error);
+        console.log('Error response:', error.response?.data);
+
+        alert(
+          error.response?.data?.message ||
+          'Failed to add product to cart'
+        );
+      }
+    });
+  };
 
   return (
     <>
-  
-    <Box sx={{
-      display: 'grid',
-      gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-      gap: 4
-    }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: {
+            xs: '1fr',
+            md: '1fr 1fr'
+          },
+          gap: 4,
+          p: 2
+        }}
+      >
+        <Card>
+          <CardMedia
+            component="img"
+            height="300"
+            image={data.image}
+            alt={data.name}
+            sx={{
+              maxHeight: 400,
+              objectFit: 'contain'
+            }}
+          />
 
-      <Card>
-        <CardMedia
-          component="img"
-          height="300"
-          image={data.image}
-          sx={{ maxHeight: 400, objectFit: 'contain' }}
-        />
-        <CardContent />
-      </Card>
+          <CardContent />
+        </Card>
 
-      <Box>
-        <Typography variant="h4">
-          {data.name}
-        </Typography>
+        <Box>
+          <Typography variant="h4" gutterBottom>
+            {data.name}
+          </Typography>
 
-        <Rating value={data.rate} readOnly />
+          <Rating
+            value={Number(data.rate) || 0}
+            readOnly
+          />
 
-        <Typography variant="h4" color="primary">
-          ${data.price}
-        </Typography>
+          <Typography
+            variant="h4"
+            color="primary"
+            sx={{ my: 2 }}
+          >
+            ${data.price}
+          </Typography>
 
-        <Chip
-          label={inStock ? 'In Stock' : 'Out of Stock'}
-          color={inStock ? 'success' : 'error'}
-        />
+          <Chip
+            label={inStock ? 'In Stock' : 'Out of Stock'}
+            color={inStock ? 'success' : 'error'}
+            sx={{ mb: 2 }}
+          />
 
-        <Typography>
-          {data.description}
-        </Typography>
+          <Typography sx={{ mb: 3 }}>
+            {data.description}
+          </Typography>
 
-        <Button variant="contained" disabled={!inStock}>
-          Add to Cart
-        </Button>
+          <Button
+            variant="contained"
+            size="small"
+            disabled={addToCartPending || !inStock}
+            onClick={handleAddToCart}
+          >
+            {addToCartPending
+              ? 'Adding...'
+              : 'Add to Cart'}
+          </Button>
+        </Box>
       </Box>
 
-    </Box>
-   <Divider sx={{ mt: 3, mb: 3 }} />
+      <Divider sx={{ mt: 3, mb: 3 }} />
 
-<Typography variant="h5" sx={{ mb: 2 }}>
-  Customer Reviews
-</Typography>
-{data.reviews?.length > 0 ? (
-  data.reviews.map((review) => (
-    <ReviewItem
-      key={review.id}
-      review={review}
-    />
-  ))
-) : (
-  <Typography color="text.secondary">
-    No reviews yet.
-  </Typography>
-)}
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        Customer Reviews
+      </Typography>
 
-      </>
+      {data.reviews?.length > 0 ? (
+        data.reviews.map((review) => (
+          <ReviewItem
+            key={review.id}
+            review={review}
+          />
+        ))
+      ) : (
+        <Typography color="text.secondary">
+          No reviews yet.
+        </Typography>
+      )}
+    </>
   );
 }
 
