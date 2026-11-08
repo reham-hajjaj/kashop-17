@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router';
 
 import UseProduct from '../hooks/UseProduct';
-import UseAddToCart from '../hooks/UseAddToCart';
+import UseAddToCart from '../hooks/useAddToCart';
 import { useAuthStore } from '../store/useAuthStore';
 import ReviewItem from '../components/ReviewItem';
 

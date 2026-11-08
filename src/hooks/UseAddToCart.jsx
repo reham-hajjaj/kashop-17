@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/useAuthStore';
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 
-function UseAddToCart() {
+function useAddToCart() {
   const token = useAuthStore((state) => state.token);
 
   const addToCart = async (productId) => {
@@ -29,4 +29,4 @@ function UseAddToCart() {
   });
 }
 
-export default UseAddToCart;
+export default useAddToCart;
