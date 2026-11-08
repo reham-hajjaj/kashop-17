@@ -7,7 +7,7 @@ import Register from "./assets/Register/Register.jsx";
 import SendCode from "./assets/SendCode/SendCode.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import ResetPassword from "./assets/ResetPassword/ResetPassword.jsx";
-import Cart from "./pages/Cart/Cart.jsx";
+import Cart from "./pages/cart/Cart.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
