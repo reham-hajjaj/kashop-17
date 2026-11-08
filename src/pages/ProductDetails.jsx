@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router';
 
 import UseProduct from '../hooks/UseProduct';
 import UseAddToCart from '../hooks/UseAddToCart';
-import { useAuthStore } from '../store/UseAuthStore';
+import { useAuthStore } from '../store/useAuthStore';
 import ReviewItem from '../components/ReviewItem';
 
 import {
