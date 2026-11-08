@@ -1,6 +1,6 @@
 import axios from 'axios'
 const axiosInstance = axios.create({
-    baseURL:"https://knowledgeshop.runasp.net/api",
+    baseURL:import.meta.env.VITE_BASEURL,
     headers: {
           "Accept-Language": "en",
         },

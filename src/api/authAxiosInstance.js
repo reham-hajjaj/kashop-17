@@ -1,20 +1,21 @@
-import axios from 'axios'
+import axios from 'axios';
+import { useAuthStore } from '../store/UseAuthStore';
 
-
-    const authAxiosInstance = axios.create({
-    baseURL:"https://knowledgeshop.runasp.net/api",
-    headers: {
-          "Accept-Language": "en",
-          
-        },
+const authAxiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_BASEURL,
+  headers: {
+    'Accept-Language': 'en',
+  },
 });
-authAxiosInstance.intereceptors.request.use((config)=>{
-    const token = useAuthStore((state) => state.token);
-    if(token){
-        config.headers.authAxiosInstance =`Bearer ${token}`,
-    }
-})
 
+authAxiosInstance.interceptors.request.use((config) => {
+  const token = useAuthStore.getState().token;
 
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
 
 export default authAxiosInstance;

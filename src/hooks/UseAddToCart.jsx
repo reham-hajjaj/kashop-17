@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuthStore } from '../store/UseAuthStore';
+import { useAuthStore } from '../store/useAuthStore';
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 

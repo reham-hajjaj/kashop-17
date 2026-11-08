@@ -1,7 +1,7 @@
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router';
-import { useAuthStore } from '../store/UseAuthStore';
+import { useAuthStore } from '../store/useAuthStore';
 
 function Navbar() {
   const token = useAuthStore((state) => state.token);
