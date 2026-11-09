@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router';
-import useAddToCart from "../hooks/useAddToCart.jsx";
+import useAddToCart from "../../hooks/useAddToCart.jsx";
 import UseProduct from '../hooks/UseProduct';
 
 import { useAuthStore } from '../store/useAuthStore';
