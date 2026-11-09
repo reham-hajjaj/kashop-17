@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router';
-
+import useAddToCart from "../hooks/useAddToCart.jsx";
 import UseProduct from '../hooks/UseProduct';
-import useAddToCart from '../hooks/useAddToCart';
+
 import { useAuthStore } from '../store/useAuthStore';
 import ReviewItem from '../components/ReviewItem';
 
@@ -26,12 +26,9 @@ function ProductDetails() {
 
   const token = useAuthStore((state) => state.token);
 
-  const { id } = useParams();
+  const {id} = useParams();
 
-  const {
-    mutate: addToCart,
-    isPending: addToCartPending
-  } = useAddToCart();
+  const {mutate:addToCart,isPending:addToCartPending} = useAddToCart();
 
   const {
     data,

@@ -8,7 +8,7 @@ function useCart() {
     const getCart=async()=>{
         const response =await authAxiosInstance.get('Carts');
         return response.data;
-    }
+    };
   return  useQuery({
     queryKey:["cart"],
     queryFn:getCart,

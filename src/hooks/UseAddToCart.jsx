@@ -3,30 +3,16 @@ import { useAuthStore } from '../store/useAuthStore';
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 
-function useAddToCart() {
-  const token = useAuthStore((state) => state.token);
+export default function useAddToCart() {
+
 
   const addToCart = async (productId) => {
-    const response = await axios.post(
-      'https://knowledgeshop.runasp.net/api/Carts',
-      {
-        ProductId: productId,
-        Count: 1
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Accept-Language': 'en'
-        }
-      }
-    );
-
-    return response.data;
-  };
+    const response = await authAxiosInstance.post(`Carts`,{ProductId:productId,Count:1});
+     return response.data;
+  }
 
   return useMutation({
-    mutationFn: addToCart,
-  });
+    mutationFn:addToCart,
+  })
 }
 
-export default useAddToCart;
