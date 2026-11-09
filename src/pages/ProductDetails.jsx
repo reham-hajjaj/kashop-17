@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router';
 
 import UseProduct from '../hooks/UseProduct';
-import UseAddToCart from '../hooks/useAddToCart';
+import useAddToCart from '../hooks/useAddToCart';
 import { useAuthStore } from '../store/useAuthStore';
 import ReviewItem from '../components/ReviewItem';
 
@@ -31,7 +31,7 @@ function ProductDetails() {
   const {
     mutate: addToCart,
     isPending: addToCartPending
-  } = UseAddToCart();
+  } = useAddToCart();
 
   const {
     data,
