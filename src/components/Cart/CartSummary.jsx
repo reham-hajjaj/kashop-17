@@ -5,14 +5,15 @@ import React from 'react'
 export default function CartSummary({total}) {
   return (
     <Peaper sx={{p:3}}>
-        <Typography variant='h4' sx={{p:2}}>
+        <Typography variant='h4' sx={{p:3}}>
             Order Summary
         </Typography>
         <Divider/>
         <Box>
 
         </Box>
-        <Button variant='' fullWidth>Checkout</Button>
+        <Typography>Total Price:${total}</Typography>
+        <Button variant='contained' fullWidth>Checkout</Button>
     </Peaper>
   )
 }
