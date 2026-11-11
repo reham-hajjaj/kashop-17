@@ -3,11 +3,11 @@ import axiosInstance from "../api/axiosInstance";
 
 export const UseCategories = () => {
   const getCategories = async () => {
- const response =await axiosInstance.get('Categories');
+ const response = await axiosInstance.get('Categories');
    
 
     return response.data.response.data;
-  };
+  }
 
   return useQuery({
     queryKey: ["Categories"],

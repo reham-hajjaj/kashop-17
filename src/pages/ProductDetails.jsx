@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router';
-import useAddToCart from "../../hooks/useAddToCart.jsx";
+
 import UseProduct from '../hooks/UseProduct';
 
 import { useAuthStore } from '../store/useAuthStore';
@@ -20,6 +20,7 @@ import {
   Divider
 } from '@mui/material';
 import { Bounce, toast } from 'react-toastify';
+import UseAddToCart from '../hooks/UseAddToCart';
 
 function ProductDetails() {
   const navigate = useNavigate();
@@ -28,13 +29,9 @@ function ProductDetails() {
 
   const {id} = useParams();
 
-  const {mutate:addToCart,isPending:addToCartPending} = useAddToCart();
+ const {mutate:addToCart,isPending:addToCartPending}=UseAddToCart();
 
-  const {
-    data,
-    isPending,
-    isError
-  } = UseProduct(id);
+  const {data,isPending,isError} = UseProduct(id);
 
   if (isPending) {
     return <CircularProgress />;
@@ -51,11 +48,7 @@ function ProductDetails() {
   const inStock = Number(data.quantity) > 0;
 
   const handleAddToCart = () => {
-    console.log('Button clicked');
-    console.log('Token:', token);
-    console.log('Product:', data.id);
-    console.log('Quantity:', data.quantity);
-
+   
     if (!token) {
       navigate('/login');
       return;
@@ -152,7 +145,7 @@ transition: Bounce,
             {data.description}
           </Typography>
 
-          <Button
+        <Button
             variant="contained"
             size="small"
             disabled={addToCartPending || !inStock}

@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "./Layouts/MainLayout.jsx";
 import AuthLayout from "./Layouts/AuthLayout.jsx";
-import Home from "./assets/Home/Home.jsx";
-import Login from "./assets/Login/Login.jsx";
-import Register from "./assets/Register/Register.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/Login/Login.jsx";
+import Register from "./pages/Register/Register.jsx";
 import SendCode from "./assets/SendCode/SendCode.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
-import ResetPassword from "./assets/ResetPassword/ResetPassword.jsx";
+import ResetPassword from "./pages/ResetPassword/ResetPassword.jsx";
 import Cart from "./pages/cart/Cart.jsx";
 const router = createBrowserRouter([
   {

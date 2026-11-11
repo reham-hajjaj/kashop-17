@@ -10,7 +10,7 @@ export default function UseProduct(id) {
   };
 
   return useQuery({
-    queryKey: ['Product', id],
+    queryKey: ['product', id],
     queryFn: getProductDetails,
     staleTime: 1000 * 60 * 5,
     enabled: !!id,
