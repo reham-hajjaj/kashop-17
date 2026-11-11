@@ -6,9 +6,9 @@ function useCart() {
   const token = useAuthStore((state) => state.token);
 
   const getCart = async () => {
-    const response = await authAxiosInstance.get('/Carts');
+    const response = await authAxiosInstance.get('Carts');
 
-    console.log('CART RESPONSE:', response.data);
+ 
 
     return response.data;
   };
