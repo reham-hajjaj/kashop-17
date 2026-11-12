@@ -13,11 +13,13 @@ import { useAuthStore } from '../../store/useAuthStore';
 import useCart from '../../hooks/useCart';
 import CartItem from '../../components/Cart/CartItem';
 import CartSummary from '../../components/Cart/CartSummary';
-
+import IconButton from '@mui/material/IconButton';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import useClearCartItem from '../../hooks/useClearCartItem';
 function Cart() {
 
   const token = useAuthStore((state) => state.token);
-
+const { mutate: clearCart, isPending: isClearing } = useClearCartItem();
   const { data, isPending, isError } = useCart();
 
   console.log(data);
@@ -51,42 +53,57 @@ function Cart() {
       </Alert>
     );
   }
+return (
+  <Box
+    sx={{
+      maxWidth: '1200px',
+      mx: 'auto',
+      p: 3,
+      display: 'grid',
+      gridTemplateColumns: {
+        xs: '1fr',
+        md: '2fr 1fr',
+      },
+      gap: 3,
+      alignItems: 'start',
+    }}
+  >
 
-  return (
-    <Box
-      sx={{
-        maxWidth: '1200px',
-        mx: 'auto',
-        p: 3,
+    {/* Cart Items - Left */}
+    <Box sx={{ position: 'relative' }}>
 
-        display: 'grid',
+      {/* Clear Cart Icon */}
+      <IconButton
+        color="error"
+        size="small"
+        onClick={() => clearCart()}
+        disabled={isClearing}
+        sx={{
+          position: 'absolute',
+          top: 5,
+          right: 5,
+          zIndex: 2,
+        }}
+      >
+        <DeleteSweepIcon fontSize="small" />
+      </IconButton>
 
-        gridTemplateColumns: {
-          xs: '1fr',
-          md: '2fr 1fr',
-        },
-
-        gap: 3,
-        alignItems: 'start',
-      }}
-    >
-
-      {/* Cart Items */}
-
-      <Box>
+      <Box sx={{ pt: 4 }}>
         {data?.items?.map((item) => (
           <CartItem key={item.id} item={item} />
         ))}
       </Box>
 
-      {/* Order Summary */}
-
-      <Box>
-        <CartSummary total={data?.cartTotal} />
-      </Box>
-
     </Box>
-  );
+
+    {/* Order Summary - Right */}
+    <Box>
+      <CartSummary total={data?.cartTotal} />
+    </Box>
+
+  </Box>
+);
+ 
 }
 
 export default Cart;
