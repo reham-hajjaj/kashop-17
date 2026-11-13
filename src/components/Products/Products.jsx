@@ -34,7 +34,15 @@ function Products() {
       >
         Products
       </Typography>
-      <Box sx={{display:'grid',gap:2,gridTemplateColumns:{xs:"repeat(2,1fr)",sm:"repeat(3,1fr)",md:"repaet(4,1fr)",}}}>
+      <Box sx={{
+    display: "grid",
+    gap: 2,
+    gridTemplateColumns: {
+      xs: "repeat(2,1fr)",
+      sm: "repeat(3,1fr)",
+      md: "repeat(4,1fr)",
+    },
+  }}>
          {data.map((product) => (
         <ProductCard
           key={product.id}

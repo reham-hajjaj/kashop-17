@@ -15,11 +15,12 @@ import CartItem from '../../components/Cart/CartItem';
 import CartSummary from '../../components/Cart/CartSummary';
 import IconButton from '@mui/material/IconButton';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import useClearCartItem from '../../hooks/useClearCartItem';
+import useClearCart from '../../hooks/useClearCart';
+
 function Cart() {
 
   const token = useAuthStore((state) => state.token);
-const { mutate: clearCart, isPending: isClearing } = useClearCartItem();
+const { mutate: clearCart, isPending: isClearing } = useClearCart();
   const { data, isPending, isError } = useCart();
 
   console.log(data);
@@ -73,21 +74,14 @@ return (
     <Box sx={{ position: 'relative' }}>
 
       {/* Clear Cart Icon */}
-      <IconButton
-        color="error"
-        size="small"
-        onClick={() => clearCart()}
-        disabled={isClearing}
-        sx={{
-          position: 'absolute',
-          top: 5,
-          right: 5,
-          zIndex: 2,
-        }}
-      >
-        <DeleteSweepIcon fontSize="small" />
-      </IconButton>
-
+     <IconButton
+  color="error"
+  onClick={() => clearCart()}
+  disabled={isClearing}
+>
+  <DeleteSweepIcon />
+</IconButton>
+        
       <Box sx={{ pt: 4 }}>
         {data?.items?.map((item) => (
           <CartItem key={item.id} item={item} />

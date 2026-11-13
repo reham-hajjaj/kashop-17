@@ -11,7 +11,7 @@ import { Link } from "react-router";
 function ProductCard({ product }) {
   return (
     <Card sx={{ maxWidth: 300, borderRadius: 3 }}>
-      <CardActionArea component={Link} to={`/products/${product.id}`}>
+      <CardActionArea component={Link} to={`/product/${product.id}`}>
         <CardMedia
           component="img"
           height="200"

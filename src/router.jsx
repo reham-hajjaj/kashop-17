@@ -17,6 +17,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
+        {
+        path:"/product/:id",
+        element: <ProductDetails/>
+      },
     ],
   },
   {
@@ -39,10 +43,7 @@ const router = createBrowserRouter([
         path: "/sendcode",
         element: <SendCode />
       },
-      {
-        path:"/product/:id",
-        element: <ProductDetails/>
-      },
+    
       {
         path:"/cart", 
         element:<Cart/>
