@@ -58,7 +58,7 @@ export default function ResetPassword() {
     <Container maxWidth="sm" sx={{ mt: 5, mb: 5 }}>
       <Box
         sx={{
-          bgcolor: "white",
+          bgcolor: "background.paper",
           boxShadow: 4,
           p: 4,
           borderRadius: 2,

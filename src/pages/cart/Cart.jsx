@@ -18,20 +18,16 @@ import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import useClearCart from '../../hooks/useClearCart';
 
 function Cart() {
-
   const token = useAuthStore((state) => state.token);
 const { mutate: clearCart, isPending: isClearing } = useClearCart();
   const { data, isPending, isError } = useCart();
-
   console.log(data);
-
   if (!token) {
     return (
       <Box sx={{ textAlign: 'center', py: 10 }}>
         <Typography variant="h4" sx={{ mb: 2 }}>
           Please login to view your cart
         </Typography>
-
         <Button component={Link} to="/login" variant="contained">
           Login
         </Button>
@@ -46,7 +42,6 @@ const { mutate: clearCart, isPending: isClearing } = useClearCart();
       </Box>
     );
   }
-
   if (isError) {
     return (
       <Alert severity="error">

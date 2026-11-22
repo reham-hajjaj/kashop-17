@@ -8,7 +8,6 @@ export default function UseProduct(id) {
 console.log("Product API response:", response.data);
     return response.data.response;
   };
-
   return useQuery({
     queryKey: ['product', id],
     queryFn: getProductDetails,

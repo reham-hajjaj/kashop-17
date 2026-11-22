@@ -1,16 +1,18 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router';
 import { useAuthStore } from '../store/useAuthStore';
-
+import { useThemeStore } from '../store/ThemeStore';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 function Navbar() {
   const token = useAuthStore((state) => state.token);
   const logout = useAuthStore((state) => state.logout);
-
+const toggleMode = useThemeStore((state)=>state.toggleMode);
+const mode =useThemeStore((state)=>state.mode);
   const Logout = () => {
     logout();
   };
-
   return (
     <AppBar position="static">
       <Toolbar>
@@ -25,7 +27,14 @@ function Navbar() {
         >
           Kashop
         </Typography>
-
+       
+       
+        <Tooltip title={mode=="light"?"Dark mode":"Light mode"}>
+  <IconButton  color= "inherit" onClick={toggleMode}>
+          {mode=="light"?<DarkModeIcon/>:<LightModeIcon/>}
+     </IconButton>     
+</Tooltip>
+        
         <Box sx={{ flexGrow: 1 }}>
           <Button color="inherit" component={Link} to="/">
             Home
