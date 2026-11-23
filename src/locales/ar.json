@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "switchLanguage": "English"
+  },
+  "home": {
+    "categories": "التصنيفات",
+    "products": "المنتجات",
+    "loadCategoriesError": "فشل تحميل التصنيفات",
+    "loadProductsError": "فشل تحميل المنتجات"
+  },
+  "products": {
+    "addToCart": "أضف إلى السلة",
+    "adding...": "جارٍ الإضافة...",
+    "inStock": "متوفر في المخزون",
+    "outStock": "غير متوفر",
+    "reviews": "التقييمات",
+    "noReviews": "لا توجد تقييمات حتى الآن"
+  }
+}

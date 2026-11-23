@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "switchLanguage": "العربية"
+  },
+  "home": {
+    "categories": "Categories",
+    "products": "Products",
+    "loadCategoriesError": "Failed to load categories",
+    "loadProductsError": "Failed to load products"
+  },
+  "products": {
+    "addToCart": "Add To Cart",
+    "adding...": "Adding...",
+    "inStock": "In Stock",
+    "outStock": "Out Of Stock",
+    "reviews": "Reviews",
+    "noReviews": "No Reviews Yet"
+  }
+}

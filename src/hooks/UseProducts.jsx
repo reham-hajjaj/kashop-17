@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 import axiosInstance from "../api/axiosInstance";
+import { useLanguageStore } from "../store/LanguageStore";
 
 export const UseProducts = () => {
+    const language = useLanguageStore((state) => state.language);
   const getProducts = async () => {
   const response = await axiosInstance.get(`Products`);
     
@@ -11,7 +13,7 @@ export const UseProducts = () => {
   }
 
   return useQuery({
-    queryKey: ["Products"],
+    queryKey: ["Products",language],
     queryFn: getProducts,
     staleTime: 1000 * 60 * 5,
   });
