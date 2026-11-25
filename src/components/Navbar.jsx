@@ -6,6 +6,7 @@ import { useThemeStore } from '../store/ThemeStore';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { useLanguageStore } from '../store/LanguageStore';
+import { useTranslation } from 'react-i18next';
 function Navbar() {
   const token = useAuthStore((state) => state.token);
   const logout = useAuthStore((state) => state.logout);
@@ -16,6 +17,7 @@ const mode =useThemeStore((state)=>state.mode);
   };
  const language = useLanguageStore((state) => state.language);
 const toggleLanguage = useLanguageStore((state) => state.toggleLanguage);
+ const { t } = useTranslation();
   return (
     <AppBar position="static">
       <Toolbar>
@@ -41,19 +43,22 @@ const toggleLanguage = useLanguageStore((state) => state.toggleLanguage);
 </Button>
         <Box sx={{ flexGrow: 1 }}>
           <Button color="inherit" component={Link} to="/">
-            Home
+           {t("nav.home")}
+          </Button>
+            <Button color="inherit" component={Link} to="/cart">
+           {t("nav.carts")}
           </Button>
           {token ? (
             <Button color="inherit" onClick={Logout}>
-              Logout
+            {t("nav.logout")}
             </Button>
           ) : (
             <>
               <Button color="inherit" component={Link} to="/login">
-                Login
+                {t("nav.login")}
               </Button>
               <Button color="inherit" component={Link} to="/register">
-                Register
+              {(t("nav.register"))}
               </Button>
             </>
           )}

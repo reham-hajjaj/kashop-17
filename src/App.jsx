@@ -15,16 +15,24 @@ import {
 } from "@mui/material";
 
 import { useThemeStore } from "./store/ThemeStore.js";
+import { useEffect } from "react";
+import { useLanguageStore } from "./store/LanguageStore.js";
+
+import i18next from "i18next";
 
 const queryClient = new QueryClient();
 
 function App() {
   const mode = useThemeStore((state) => state.mode);
+  const language = useLanguageStore((state) => state.language);
 
   const theme = getTheme(mode);
 
-  console.log("mode:", mode);
-  console.log(`theme: ${theme.palette.primary.main}`);
+  useEffect(() => {
+    i18next.changeLanguage(language);
+    document.documentElement.dir = language=="ar"?"rtl":"ltr";
+    document.documentElement.lang=language
+  }, [language]);
 
   return (
     <ThemeProvider theme={theme}>

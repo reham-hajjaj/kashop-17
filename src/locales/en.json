@@ -1,5 +1,7 @@
 {
   "nav": {
+    "home":"Home",
+    "carts":"Carts",
     "login": "Login",
     "register": "Register",
     "logout": "Logout",
@@ -15,8 +17,16 @@
     "addToCart": "Add To Cart",
     "adding...": "Adding...",
     "inStock": "In Stock",
-    "outStock": "Out Of Stock",
+   
     "reviews": "Reviews",
     "noReviews": "No Reviews Yet"
   }
+  ,
+  "cart": {
+    "loginMessage": "Please login to view your cart",
+    "login": "Login",
+    "error": "Failed to load cart items",
+    "clearCart": "Clear Cart"
+  }
+
 }

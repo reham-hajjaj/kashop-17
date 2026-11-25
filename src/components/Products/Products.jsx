@@ -7,9 +7,12 @@ import {
 
 import { UseProducts } from "../../hooks/UseProducts";
 import ProductCard from "./ProductCard";
+import { useTranslation } from "react-i18next";
 
 function Products() {
-  const { data, isPending, isError, error } = UseProducts();
+  const { t } = useTranslation();
+
+  const { data, isPending, isError } = UseProducts();
 
   if (isPending) {
     return <CircularProgress />;
@@ -18,12 +21,10 @@ function Products() {
   if (isError) {
     return (
       <Alert severity="error">
-        {error?.message || "Something went wrong"}
+        {t("home.loadProductsError")}
       </Alert>
     );
   }
-
-  console.log(data);
 
   return (
     <Box>
@@ -32,26 +33,27 @@ function Products() {
         component="h2"
         sx={{ mb: 4 }}
       >
-        Products
+        {t("home.products")}
       </Typography>
-      <Box sx={{
-    display: "grid",
-    gap: 2,
-    gridTemplateColumns: {
-      xs: "repeat(2,1fr)",
-      sm: "repeat(3,1fr)",
-      md: "repeat(4,1fr)",
-    },
-  }}>
-         {data.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-        />
-      ))}
-      </Box>
 
-     
+      <Box
+        sx={{
+          display: "grid",
+          gap: 2,
+          gridTemplateColumns: {
+            xs: "repeat(2,1fr)",
+            sm: "repeat(3,1fr)",
+            md: "repeat(4,1fr)",
+          },
+        }}
+      >
+        {data?.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+          />
+        ))}
+      </Box>
     </Box>
   );
 }

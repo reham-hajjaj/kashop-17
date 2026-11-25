@@ -30,7 +30,7 @@ function Categories() {
   if (isError) {
     return (
       <Alert severity="error">
-        {t("home.loadCategoriesError")}
+        {t("home.loadProductsError")}
       </Alert>
     );
   }
