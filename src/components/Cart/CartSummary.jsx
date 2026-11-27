@@ -1,20 +1,33 @@
-import { Box, Button, Divider, Typography } from '@mui/material'
-import Peaper from '@mui/material/Paper'
-import React from 'react'
+import { Box, Button, Divider, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import { useNavigate } from "react-router";
 
-export default function CartSummary({total}) {
+export default function CartSummary({ total }) {
+  const navigate = useNavigate();
+
   return (
-    <Peaper sx={{p:3}}>
-        <Typography variant='h4' sx={{p:3}}>
-            Order Summary
-        </Typography>
-        <Divider/>
-        <Box>
+    <Paper sx={{ p: 3 }}>
+      <Typography variant="h4" sx={{ p: 3 }}>
+        Order Summary
+      </Typography>
 
-        </Box>
-        <Typography>Total Price:${total}</Typography>
-        <Button variant='contained' fullWidth>Checkout</Button>
-    </Peaper>
-  )
+      <Divider />
+
+      <Box></Box>
+
+      <Typography>Total Price: ${total}</Typography>
+
+      <Button
+        onClick={() => navigate("/checkout")}
+        variant="contained"
+        fullWidth
+      >
+        Checkout
+      </Button>
+
+      <Button onClick={() => navigate("/")}>
+        Shopping
+      </Button>
+    </Paper>
+  );
 }
-

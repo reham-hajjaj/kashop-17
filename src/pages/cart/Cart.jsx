@@ -9,7 +9,7 @@ import {
   IconButton
 } from '@mui/material';
 
-import { Link } from 'react-router';
+import { Link,  useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { useAuthStore } from '../../store/useAuthStore';
@@ -20,6 +20,7 @@ import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import useClearCart from '../../hooks/useClearCart';
 
 function Cart() {
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const token = useAuthStore((state) => state.token);

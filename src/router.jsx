@@ -8,6 +8,9 @@ import SendCode from "./assets/SendCode/SendCode.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import ResetPassword from "./pages/ResetPassword/ResetPassword.jsx";
 import Cart from "./pages/cart/Cart.jsx";
+import Checkout from "./pages/checkout/Checkout.jsx";
+import ProtectedRoute from "./components/ProtectedRouter.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,41 +18,49 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
       },
-        {
-        path:"/product/:id",
-        element: <ProductDetails/>
+      {
+        path: "product/:id",
+        element: <ProductDetails />,
+      },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "cart",
+            element: <Cart />,
+          },
+          {
+            path: "checkout",
+            element: <Checkout />,
+          },
+        ],
       },
     ],
   },
+
   {
     element: <AuthLayout />,
     children: [
       {
         path: "/login",
-        element: <Login />
+        element: <Login />,
       },
-
       {
         path: "/register",
-        element: <Register />
+        element: <Register />,
       },
       {
-        path:"/resetpassword",
-        element: <ResetPassword/>
+        path: "/resetpassword",
+        element: <ResetPassword />,
       },
       {
         path: "/sendcode",
-        element: <SendCode />
+        element: <SendCode />,
       },
-    
-      {
-        path:"/cart", 
-        element:<Cart/>
-      },
-    ]
-  }
+    ],
+  },
 ]);
 
 export default router;
