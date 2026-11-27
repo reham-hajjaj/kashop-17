@@ -5,7 +5,9 @@
     "login": "Login",
     "register": "Register",
     "logout": "Logout",
-    "switchLanguage": "العربية"
+    "switchLanguage": "العربية",
+    "profile":"الصفحة الشخصية"
+    
   },
   "home": {
     "categories": "Categories",

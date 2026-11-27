@@ -5,7 +5,8 @@
     "login": "تسجيل الدخول",
     "register": "إنشاء حساب",
     "logout": "تسجيل الخروج",
-    "switchLanguage": "English"
+    "switchLanguage": "English",
+    "profile": "الصفحة الشخصية"
   },
   "home": {
     "categories": "التصنيفات",

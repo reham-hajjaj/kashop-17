@@ -48,6 +48,9 @@ const toggleLanguage = useLanguageStore((state) => state.toggleLanguage);
             <Button color="inherit" component={Link} to="/cart">
            {t("nav.carts")}
           </Button>
+           <Button color="inherit" component={Link} to="/profile">
+           {t("nav.profile")}
+          </Button>
           {token ? (
             <Button color="inherit" onClick={Logout}>
             {t("nav.logout")}

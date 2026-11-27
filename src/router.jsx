@@ -10,6 +10,9 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword.jsx";
 import Cart from "./pages/cart/Cart.jsx";
 import Checkout from "./pages/checkout/Checkout.jsx";
 import ProtectedRoute from "./components/ProtectedRouter.jsx";
+import ProfileLayout from "./pages/profile/ProfileLayout.jsx";
+import ProfileInfo from "./components/profile/ProfileInfo.jsx";
+import ProfileOrders from "./components/profile/ProfileOrders.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,20 @@ const router = createBrowserRouter([
             path: "checkout",
             element: <Checkout />,
           },
+          {
+            path:"profile",
+            element:<ProfileLayout/>,
+            children:[
+              {
+                index:true,
+                element:<ProfileInfo/>
+              },
+              {
+                path:"order",
+                element:<ProfileOrders/>
+              }
+            ]
+          }
         ],
       },
     ],
